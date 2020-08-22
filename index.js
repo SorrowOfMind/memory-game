@@ -1,9 +1,11 @@
 const board = document.getElementById('board');
 const points = document.getElementById('points');
+const time = document.getElementById('time');
 const modal = document.getElementById('modal');
 const play = document.getElementById('play');
 let currentCards = [];
 let score = 0;
+let timer = 0;
 
 const createCards = (arr) => {
     let availableCards = Array.from({length: 12}, (val, idx) => idx); //[0,1,2,3,4,5,6,7,8,9,10,11]
@@ -43,6 +45,7 @@ const flip = e => {
             setTimeout(() => {
                 modal.classList.remove('hidden');
             }, 1000);
+            clearInterval(timerInterval);
         }
     }
 };
@@ -64,6 +67,10 @@ const placeCards = (available) => {
 const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
 createCards(cards);
+let timerInterval = setInterval(() => {
+    time.textContent = timer;
+    timer += 1;
+}, 1000)
 
 play.addEventListener('click', () => {
     window.location.reload();

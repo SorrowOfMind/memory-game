@@ -18,14 +18,18 @@ body {
     background: #0b1f42;
 }
 
-.hidden {
-    display: none;
+.header {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 460px;
 }
 
-.score {
+.score, .timer {
     font-size: 28px;
     text-align: center;
-    padding: 18px;
+    padding: 1rem 0;
     color: #f29200;
 }
 
