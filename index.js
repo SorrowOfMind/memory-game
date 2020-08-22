@@ -1,5 +1,7 @@
 const board = document.getElementById('board');
 const points = document.getElementById('points');
+const modal = document.getElementById('modal');
+const play = document.getElementById('play');
 let currentCards = [];
 let score = 0;
 
@@ -23,7 +25,6 @@ const flip = e => {
         const {name} = e.target.dataset;
         const {id} = e.target.dataset;
         const flippedCard = e.target.parentElement.parentElement;
-   
         swapClasses(flippedCard, 'flip-card-back', 'flip-card');
         currentCards.push({id, name});
         if (currentCards.length === 2) {
@@ -37,6 +38,11 @@ const flip = e => {
                 currentCards = [];
                 setTimeout(() => openCards.forEach(card => swapClasses(card, 'flip-card', 'flip-card-back')), 1000);
             }
+        }
+        if (score === 60) {
+            setTimeout(() => {
+                modal.classList.remove('hidden');
+            }, 1000);
         }
     }
 };
@@ -58,3 +64,7 @@ const placeCards = (available) => {
 const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
 createCards(cards);
+
+play.addEventListener('click', () => {
+    window.location.reload();
+})
